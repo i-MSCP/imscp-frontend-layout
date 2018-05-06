@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <?= $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1')->appendHttpEquiv('X-UA-Compatible', 'IE=edge') ?>
 
-<?= $this->headTitle('i-MSCP internet Multi Server Control Panel')->setSeparator(' / ')->setAutoEscape(false) ?>
+<?= $this->headTitle()->prepend('i-MSCP internet Multi Server Control Panel')->setAutoEscape(false) ?>
     
 <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'])
     ->appendStylesheet($this->basePath('vendor/bootstrap/dist/css/bootstrap.min.css'))
@@ -17,23 +17,7 @@
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
-        <?= $this->partial('layout/partials/sidebar') ?>
-        <?= $this->partial('layout/partials/topbar') ?>
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="page-title">
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <?= $this->content ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /page content -->
-        <?= $this->partial('layout/partials/footer') ?>
+        <?= $this->content ?>
     </div>
 </div>
 <?= $this->inlineScript()

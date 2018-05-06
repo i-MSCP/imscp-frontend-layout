@@ -21,19 +21,27 @@
 namespace iMSCP\Frontend\Layout;
 
 return [
-    'view_manager' => [
-        'display_not_found_reason' => true,
-        'display_exceptions'       => true,
+    'view_manager'  => [
+        'display_not_found_reason' => false,
+        'display_exceptions'       => false,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
-        'exception_template'       => 'error/index',
-        'template_map' => [
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+        'exception_template'       => 'error/exception',
+        'template_map'             => [
+            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/error'  => __DIR__ . '/../view/layout/error.phtml',
+            'error/404'     => __DIR__ . '/../view/error/404.phtml',
+            'error/index'   => __DIR__ . '/../view/error/exception.phtml',
         ],
-        'template_path_stack' => [
+        'template_path_stack'      => [
             __DIR__ . '/../view',
         ],
-    ]
+    ],
+    'asset_manager' => [
+        'resolver_configs' => [
+            'paths' => [
+                __DIR__ . '/../assets/',
+            ],
+        ],
+    ],
 ];

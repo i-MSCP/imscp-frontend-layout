@@ -20,14 +20,45 @@
 
 namespace iMSCP\Frontend\Layout;
 
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\Mvc\ApplicationInterface;
+use Zend\Mvc\MvcEvent;
+
 /**
  * Class Module
- * @package ImscpCommon
+ * @package iMSCP\Frontend\Layout
  */
-class Module
+class Module implements ConfigProviderInterface, BootstrapListenerInterface
 {
+    /**
+     * @inheritdoc
+     */
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function onBootstrap(EventInterface $event)
+    {
+        /** @var ApplicationInterface $application */
+        $application = $event->getTarget();
+        $events = $application->getEventManager();
+        $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onDispatchError'], 100);
+    }
+
+    /**
+     * Listener for overriding of default layout on error
+     *
+     * @see https://github.com/zendframework/zendframework/issues/2604
+     * @param MvcEvent $event
+     */
+    public function onDispatchError(MvcEvent $event)
+    {
+        $event->getViewModel()->setTemplate('layout/error.phtml');
     }
 }

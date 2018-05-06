@@ -1,0 +1,66 @@
+{
+  "name": "imscp/imscp-frontend-layout",
+  "description": "FrontEnd layout module for i-MSCP",
+  "license": "LGPL-2.1-only",
+  "keywords": [
+    "i-mscp",
+    "frontend",
+    "layout"
+  ],
+  "homepage": "https://www.i-mscp.net/",
+  "support": {
+    "issues": "https://youtrack.i-mscp.net/",
+    "source": "https://github.com/i-MSCP/imscp/"
+  },
+  "authors": [
+    {
+      "name": "Laurent Declercq",
+      "email": "l.declercq@nuxwin.com",
+      "homepage": "https://www.i-mscp.net/",
+      "role": "developer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.1",
+    "zendframework/zend-mvc": "^3.1",
+    "zendframework/zend-view": "^2.10",
+    "rwoverdijk/assetmanager" : "^1.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "iMSCP\\Frontend\\Layout\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "iMSCP\\Frontend\\Layout\\": "/test"
+    }
+  },
+  "extra": [],
+  "scripts": {
+    "check": [
+      "@cs-check",
+      "@test"
+    ],
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf",
+    "test": "phpunit --colors=always",
+    "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5",
+    "zendframework/zend-coding-standard": "~1.0.0"
+  },
+  "config": {
+    "sort-packages": true,
+    "classmap-authoritative": false,
+    "discard-changes": true,
+    "htaccess-protect": true,
+    "optimize-autoloader": false,
+    "apcu-autoloader": false,
+    "preferred-install": "dist",
+    "process-timeout": 2000
+  }
+}
